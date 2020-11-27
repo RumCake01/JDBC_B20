@@ -22,12 +22,17 @@ public class UtilityPractice {
         // get row count of ResultSet:
         // we can move the pointer to the last row and get the row number
 
-
         int rowCount =  DB_Utility.getRowCount() ;
         System.out.println("rowCount = " + rowCount); // returns the total row count
 
         int colCount = DB_Utility.getColumnCount() ;
         System.out.println("colCount = " + colCount); // returns the total column count
+
+        System.out.println("All Column Names: " + DB_Utility.getColumnNames());
+
+        System.out.println("All data from all rows "+DB_Utility.getRowDataAsList(1));
+
+
 
         DB_Utility.destroy();
 

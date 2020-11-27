@@ -113,11 +113,51 @@ public class DB_Utility {
             System.out.println("Error while getting column names "+ e.getMessage());
         }
         return columnList;
-
-
     }
 
 
+    // method that will return all row data as  List<String>
+    // we added int rowNumber parameter so we can enter the row number that we wan to tget info about:
+
+    public static List<String> getRowDataAsList(int rowNumber){
+
+        List<String> rowDataList = new ArrayList<>();
+
+        // 1. first we need to move the pointer to the specific rowNumber
+        try {
+            rs.absolute(rowNumber);
+            for (int colNum = 1; colNum <=getColumnCount() ; colNum++) {
+                String cellValue = rs.getString(colNum); // this returns us a value
+
+                // now we need to store it as a list
+                rowDataList.add(cellValue);
+            }
+            rs.beforeFirst(); // alwats remember to return the pointer to the beforefirst
+
+        } catch (SQLException e) {
+            System.out.println("ERROR WHILE GETTING ROW DATA AS LIST "+ e.getMessage());
+        }
+        return rowDataList;
+    }
+
+    // method to return the cell value at certain row certain column, so the method will take 2 parameters:
+    // @param rowNum
+    // @parem colNum
+    // return Cell value as a String
+
+    public static String getColumnDataAtRow( int rowNum, int colNum){
+
+        String result = "";
+        try {
+            rs.absolute(rowNum);
+            result = rs.getString(colNum);
+            rs.beforeFirst();
+        } catch (SQLException e) {
+            System.out.println("Error while getting cell valye ar RoNum ColNum" + e.getMessage());
+        }
+        return result;
+
+    }
 
 
 }
