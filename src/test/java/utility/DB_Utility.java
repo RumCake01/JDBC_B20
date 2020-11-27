@@ -35,7 +35,7 @@ public class DB_Utility {
         // if we want a variable to be acsessible in every method, where do we put it? --> We must make it a static variable
 
         // now, we are reusing the connection build from previous method
-       //  ResultSet rs = null;
+        //  ResultSet rs = null;
         try {
             statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = statement.executeQuery(query);
@@ -60,23 +60,23 @@ public class DB_Utility {
     // this method below counts how many rows we have
     // returns the row count of the resultSet we got
     public static int getRowCount() {
-            int rowCount = 0;
+        int rowCount = 0;
 
-            try {
-                rs.last();
-                rowCount = rs.getRow(); // returns us row count
+        try {
+            rs.last();
+            rowCount = rs.getRow(); // returns us row count
 
-                // after we finished getting our row count , we need to return our cursor back to beforeFirst location
-                // to avoid accident
-                rs.beforeFirst();
+            // after we finished getting our row count , we need to return our cursor back to beforeFirst location
+            // to avoid accident
+            rs.beforeFirst();
 
-            } catch (SQLException e) {
+        } catch (SQLException e) {
 
-                System.out.println("ERROR WHILE GETTING ROW COUNT " + e.getMessage());
-            }
-
-            return rowCount;
+            System.out.println("ERROR WHILE GETTING ROW COUNT " + e.getMessage());
         }
+
+        return rowCount;
+    }
 
     // another method to get the column count:
     public static int getColumnCount() {
@@ -85,9 +85,9 @@ public class DB_Utility {
 
         try {
             ResultSetMetaData rsmd = rs.getMetaData();
-            columnCount= rsmd.getColumnCount();
+            columnCount = rsmd.getColumnCount();
         } catch (SQLException e) {
-            System.out.println("Error while counting the columns "+ e.getMessage());
+            System.out.println("Error while counting the columns " + e.getMessage());
 
         }
         return columnCount;
@@ -95,12 +95,12 @@ public class DB_Utility {
     }
 
     // a method that returns all the column names as List <String>
-    public static List<String> getColumnNames(){
+    public static List<String> getColumnNames() {
         // whenever we want to return something, it is better if we create a variable of that type, create an object so that we can return
-        
+
         // 1/ Create a list
         List<String> columnList = new ArrayList<>();
-        
+
         try {
             ResultSetMetaData rsmd = rs.getMetaData();
             for (int colNum = 1; colNum <= getColumnCount(); colNum++) {
@@ -110,7 +110,7 @@ public class DB_Utility {
                 columnList.add(columnName);
             }
         } catch (SQLException e) {
-            System.out.println("Error while getting column names "+ e.getMessage());
+            System.out.println("Error while getting column names " + e.getMessage());
         }
         return columnList;
     }
@@ -119,14 +119,14 @@ public class DB_Utility {
     // method that will return all row data as  List<String>
     // we added int rowNumber parameter so we can enter the row number that we wan to tget info about:
 
-    public static List<String> getRowDataAsList(int rowNumber){
+    public static List<String> getRowDataAsList(int rowNumber) {
 
         List<String> rowDataList = new ArrayList<>();
 
         // 1. first we need to move the pointer to the specific rowNumber
         try {
             rs.absolute(rowNumber);
-            for (int colNum = 1; colNum <=getColumnCount() ; colNum++) {
+            for (int colNum = 1; colNum <= getColumnCount(); colNum++) {
                 String cellValue = rs.getString(colNum); // this returns us a value
 
                 // now we need to store it as a list
@@ -135,7 +135,7 @@ public class DB_Utility {
             rs.beforeFirst(); // alwats remember to return the pointer to the beforefirst
 
         } catch (SQLException e) {
-            System.out.println("ERROR WHILE GETTING ROW DATA AS LIST "+ e.getMessage());
+            System.out.println("ERROR WHILE GETTING ROW DATA AS LIST " + e.getMessage());
         }
         return rowDataList;
     }
@@ -145,7 +145,7 @@ public class DB_Utility {
     // @parem colNum
     // return Cell value as a String
 
-    public static String getColumnDataAtRow( int rowNum, int colNum){
+    public static String getColumnDataAtRow(int rowNum, int colNum) {
 
         String result = "";
         try {
@@ -159,7 +159,6 @@ public class DB_Utility {
     }
 
 
-
     // method to return the cell value at certain row certain column, so the method will take 2 parameters:
     // @param rowNum row Number
     // @parem colName column Name
@@ -167,7 +166,7 @@ public class DB_Utility {
 
 
     // this below is the overloaded method, the same name but different parameter.
-    public static String getColumnDataAtRow( int rowNum, String colName){
+    public static String getColumnDataAtRow(int rowNum, String colName) {
 
         String result = "";
         try {
@@ -179,5 +178,48 @@ public class DB_Utility {
         }
         return result;
     }
+
+    // return the value of all cell in that column
+    // @param  colNum the column number you want to get the list out of
+    // @return value of all cells in that column as a List<String>
+
+    public static List<String> getColumnDataAsList(int colNum) {
+        List<String> valueOfAllCells = new ArrayList<>();
+        // now go through each and every row and get the value:
+
+        try {
+            while (rs.next()) { // this is how we can go to each and every row
+                String cellvalue = rs.getString(colNum);
+                valueOfAllCells.add(cellvalue);
+            }
+            rs.beforeFirst();
+        } catch (SQLException e) {
+            System.out.println("Error message while getting one column data as list: " + e.getMessage());
+        }
+        return valueOfAllCells;
+    }
+
+    // below is overloaded method with same name but diff param
+    // return the value of all cell in that column using columnName
+    // @param  colName the column number you want to get the list out of
+    // @return value of all cells in that column as a List<String>
+
+    public static List<String> getColumnDataAsList(String colName) {
+        List<String> valueOfAllCells = new ArrayList<>();
+        // now go through each and every row and get the value:
+
+        try {
+            while (rs.next()) { // this is how we can go to each and every row
+                String cellvalue = rs.getString(colName);
+                valueOfAllCells.add(cellvalue);
+            }
+            rs.beforeFirst();
+        } catch (SQLException e) {
+            System.out.println("Error message while getting one column data as list: " + e.getMessage());
+        }
+        return valueOfAllCells;
+    }
+
+
 
 }

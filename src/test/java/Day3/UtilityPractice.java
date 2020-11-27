@@ -38,6 +38,14 @@ public class UtilityPractice {
 
         System.out.println("I am getting the Cell Value at row 2 from column Min_Salary:  "+ DB_Utility.getColumnDataAtRow(2, "MIN_SALARY"));
 
+        System.out.println("Get Cell value at row 5 col JOB_TITLE " + DB_Utility.getColumnDataAtRow(2, "JOB_TITLE") );
+
+        System.out.println("3rd Column Value:  "+ DB_Utility.getColumnDataAsList(3));
+
+        System.out.println("JOB_title column value: " +DB_Utility.getColumnDataAsList("JOB_TITLE"));
+
+
+
 
         DB_Utility.destroy();
 
