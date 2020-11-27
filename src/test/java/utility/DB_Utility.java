@@ -1,7 +1,10 @@
 package utility;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
 
 public class DB_Utility {
 
@@ -239,5 +242,35 @@ public class DB_Utility {
         } catch (SQLException e) {
             System.out.println("Errors while printing the whole table "+ e.getMessage());
         }
+        }
+
+        // method that returns the rowData along with column name as Map object
+        // @param rowNum rowNumber we want  to get the data
+    // return Map object - column name as key, and cell value as value
+
+    public static Map<String, String> getRowMap (int rowNum){
+
+
+        Map<String, String> rowMap = new LinkedHashMap<>();
+
+        try {
+            rs.absolute(rowNum);
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+
+            for (int colNum = 1; colNum <= rsmd.getColumnCount(); colNum++) {
+
+                String columnName = rsmd.getColumnLabel(colNum);
+                String cellValue = rs.getString(colNum);
+                ;
+                rowMap.put(columnName, cellValue);
+            }
+                rs.beforeFirst();
+        }catch (SQLException e){
+            System.out.println("ERROR WHILE getting ROWMAP "+ e.getMessage() );
+        }
+        return rowMap;
+
     }
-}
+
+    }

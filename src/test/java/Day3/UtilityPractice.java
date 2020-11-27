@@ -3,7 +3,11 @@ package Day3;
 import utility.DB_Utility;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class UtilityPractice {
 
@@ -48,8 +52,29 @@ public class UtilityPractice {
 
         DB_Utility.displayAllData();
 
+        System.out.println("====================\n");
+        // method to get entire row and store it a Map (key-value format)
+        Map<String, String> row1Map = new LinkedHashMap<>();
+        // so i want to add this:
+        //columnNames:                   [           JOB_ID,       JOB_TITLE,          MIN_SALARY,      MAX_SALARY]
+        //match the colNames with the row1Info:     AC_ACCOUNT	   Public Accountant	   4200	          9000
+
+
+        row1Map.put("JOB_ID", "AC_ACCOUNT");
+        row1Map.put("JOB_TITLE","Public Accountant" );
+        row1Map.put("MIN_SALARY", "4200");
+        row1Map.put("MAX_SALARY","9000" );
+        System.out.println("row1Map : "+ row1Map);
+
+        // now do above programmatically:
+        // create row1map like programmatically
+
+        System.out.println("============= NEW ===========================\n");
+
+        System.out.println("first row of rowMap = "+ DB_Utility.getRowMap(1));
+
+
 
         DB_Utility.destroy();
-
     }
 }
