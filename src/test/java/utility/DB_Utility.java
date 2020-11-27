@@ -1,5 +1,7 @@
 package utility;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DB_Utility {
 
@@ -42,7 +44,6 @@ public class DB_Utility {
             System.out.println("Error while getting resultset " + e.getMessage());
         }
         return rs;
-
     }
 
     // create method to clean up all the connection statement and result set
@@ -54,7 +55,6 @@ public class DB_Utility {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     // this method below counts how many rows we have
@@ -76,7 +76,6 @@ public class DB_Utility {
             }
 
             return rowCount;
-
         }
 
     // another method to get the column count:
@@ -94,5 +93,31 @@ public class DB_Utility {
         return columnCount;
 
     }
+
+    // a method that returns all the column names as List <String>
+    public static List<String> getColumnNames(){
+        // whenever we want to return something, it is better if we create a variable of that type, create an object so that we can return
+        
+        // 1/ Create a list
+        List<String> columnList = new ArrayList<>();
+        
+        try {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            for (int colNum = 1; colNum <= getColumnCount(); colNum++) {
+
+                // to get the column names, we created a separate variable:
+                String columnName = rsmd.getColumnLabel(colNum);
+                columnList.add(columnName);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error while getting column names "+ e.getMessage());
+        }
+        return columnList;
+
+
+    }
+
+
+
 
 }

@@ -29,7 +29,6 @@ public class UtilityPractice {
         int colCount = DB_Utility.getColumnCount() ;
         System.out.println("colCount = " + colCount); // returns the total column count
 
-
         DB_Utility.destroy();
 
     }
