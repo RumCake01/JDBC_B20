@@ -1,20 +1,15 @@
 package Day2;
 
+import utility.DB_Utility;
+
 import java.sql.*;
 
 public class DisplayingAllDataFromAllColumn {
 
     public static void main(String[] args) throws SQLException {
 
-        String connection = "jdbc:oracle:thin:@54.172.140.77:1521:XE";
-        String username = "hr";
-        String password = "hr";
-
-        Connection conn = DriverManager.getConnection(connection, username, password);
-
-        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-        ResultSet rs = statement.executeQuery("SELECT * FROM EMPLOYEES");
+        DB_Utility.createConnection();
+        ResultSet rs = DB_Utility.runQuery("SELECT * FROM EMPLOYEES");
 
         // print out entire first row of Employee Table from above query
         ResultSetMetaData  rsmd = rs.getMetaData();
@@ -45,8 +40,6 @@ public class DisplayingAllDataFromAllColumn {
             }
             System.out.println();
         }
-        rs.close();
-        statement.close();
-        conn.close();
+        DB_Utility.destoy();
     }
 }
