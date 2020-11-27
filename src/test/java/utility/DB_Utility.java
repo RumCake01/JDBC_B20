@@ -220,6 +220,24 @@ public class DB_Utility {
         return valueOfAllCells;
     }
 
+    // method to display all the results set data on the console
 
+    public static void displayAllData(){
 
+        try {
+            rs.beforeFirst();
+        while(rs.next()){
+            for (int colNum = 1; colNum <=getColumnCount() ; colNum++) {
+                // System.out.print(rs.getString(colNum) + "     \t");
+                // for making the table print out pretty:
+                System.out.printf("%-35s", rs.getString(colNum));
+
+            }
+            System.out.println();
+        }
+        rs.beforeFirst();
+        } catch (SQLException e) {
+            System.out.println("Errors while printing the whole table "+ e.getMessage());
+        }
+    }
 }

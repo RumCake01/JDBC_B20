@@ -44,7 +44,9 @@ public class UtilityPractice {
 
         System.out.println("JOB_title column value: " +DB_Utility.getColumnDataAsList("JOB_TITLE"));
 
+        System.out.println("=======NEW==================");
 
+        DB_Utility.displayAllData();
 
 
         DB_Utility.destroy();
