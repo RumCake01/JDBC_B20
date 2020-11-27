@@ -52,7 +52,7 @@ public class Review {
 
         // clean up the connection  , statement and resultSet object after usage
 
-        DB_Utility.destoy();
+        DB_Utility.destroy();
     }
 
 

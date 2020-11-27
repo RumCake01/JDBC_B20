@@ -25,7 +25,7 @@ public class UtilityPractice {
         int rowCount = jobRS.getRow(); // returns us the total raw number, prints the current row
         System.out.println("row number " + rowCount );
 
-        DB_Utility.destoy();
+        DB_Utility.destroy();
 
     }
 }

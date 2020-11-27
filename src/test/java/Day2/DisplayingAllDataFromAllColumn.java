@@ -40,6 +40,6 @@ public class DisplayingAllDataFromAllColumn {
             }
             System.out.println();
         }
-        DB_Utility.destoy();
+        DB_Utility.destroy();
     }
 }

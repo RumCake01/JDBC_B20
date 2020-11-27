@@ -36,7 +36,7 @@ public class GettingMoreInfoAboutResultSetObject {
             System.out.println("Column name "+ rsmd.getColumnLabel(colNum));
         }
 
-        DB_Utility.destoy();
+        DB_Utility.destroy();
 
 
     }
