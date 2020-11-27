@@ -32,7 +32,6 @@ public class GettingMoreInfoAboutResultSetObject {
         System.out.println("column count"+colCount);
 
         // to get the column name we can use - getColumnLabel method:
-
         System.out.println("First columns Name is " + rsmd.getColumnLabel(1));
         System.out.println("Second column name is " + rsmd.getColumnLabel(2));
 
@@ -40,7 +39,12 @@ public class GettingMoreInfoAboutResultSetObject {
         for(int colNum = 1; colNum <=colCount; colNum++){
             System.out.println("Column name "+ rsmd.getColumnLabel(colNum));
 
+
+
         }
+        rs.close();
+        statement.close();
+        conn.close();
 
     }
 }
