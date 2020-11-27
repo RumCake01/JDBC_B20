@@ -21,9 +21,14 @@ public class UtilityPractice {
 
         // get row count of ResultSet:
         // we can move the pointer to the last row and get the row number
-        jobRS.last();
-        int rowCount = jobRS.getRow(); // returns us the total raw number, prints the current row
-        System.out.println("row number " + rowCount );
+
+
+        int rowCount =  DB_Utility.getRowCount() ;
+        System.out.println("rowCount = " + rowCount); // returns the total row count
+
+        int colCount = DB_Utility.getColumnCount() ;
+        System.out.println("colCount = " + colCount); // returns the total column count
+
 
         DB_Utility.destroy();
 

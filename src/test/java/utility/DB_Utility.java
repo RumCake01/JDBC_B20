@@ -33,7 +33,7 @@ public class DB_Utility {
         // if we want a variable to be acsessible in every method, where do we put it? --> We must make it a static variable
 
         // now, we are reusing the connection build from previous method
-        ResultSet rs = null;
+       //  ResultSet rs = null;
         try {
             statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = statement.executeQuery(query);
@@ -60,22 +60,24 @@ public class DB_Utility {
     // this method below counts how many rows we have
     // returns the row count of the resultSet we got
     public static int getRowCount() {
+            int rowCount = 0;
 
-        int rowCount = 0;
+            try {
+                rs.last();
+                rowCount = rs.getRow(); // returns us row count
 
-        try {
-            rs.last();
-            rowCount = rs.getRow(); // returns us row count
+                // after we finished getting our row count , we need to return our cursor back to beforeFirst location
+                // to avoid accident
+                rs.beforeFirst();
 
-            // after we finished getting our row count , we need to return our cursor back to beforeFirst location
-            // to avoid accident
-            rs.beforeFirst();
-        } catch (SQLException e) {
-            System.out.println("ERROR WHILE GETTING ROW COUNT " + e.getMessage());
+            } catch (SQLException e) {
+
+                System.out.println("ERROR WHILE GETTING ROW COUNT " + e.getMessage());
+            }
+
+            return rowCount;
+
         }
-        return rowCount;
-    }
-
 
     // another method to get the column count:
     public static int getColumnCount() {
@@ -92,4 +94,5 @@ public class DB_Utility {
         return columnCount;
 
     }
+
 }
