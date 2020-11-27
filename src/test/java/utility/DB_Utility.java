@@ -225,30 +225,30 @@ public class DB_Utility {
 
     // method to display all the results set data on the console
 
-    public static void displayAllData(){
+    public static void displayAllData() {
 
         try {
             rs.beforeFirst();
-        while(rs.next()){
-            for (int colNum = 1; colNum <=getColumnCount() ; colNum++) {
-                // System.out.print(rs.getString(colNum) + "     \t");
-                // for making the table print out pretty:
-                System.out.printf("%-35s", rs.getString(colNum));
+            while (rs.next()) {
+                for (int colNum = 1; colNum <= getColumnCount(); colNum++) {
+                    // System.out.print(rs.getString(colNum) + "     \t");
+                    // for making the table print out pretty:
+                    System.out.printf("%-35s", rs.getString(colNum));
 
+                }
+                System.out.println();
             }
-            System.out.println();
-        }
-        rs.beforeFirst();
+            rs.beforeFirst();
         } catch (SQLException e) {
-            System.out.println("Errors while printing the whole table "+ e.getMessage());
+            System.out.println("Errors while printing the whole table " + e.getMessage());
         }
-        }
+    }
 
-        // method that returns the rowData along with column name as Map object
-        // @param rowNum rowNumber we want  to get the data
+    // method that returns the rowData along with column name as Map object
+    // @param rowNum rowNumber we want  to get the data
     // return Map object - column name as key, and cell value as value
 
-    public static Map<String, String> getRowMap (int rowNum){
+    public static Map<String, String> getRowMap(int rowNum) {
 
 
         Map<String, String> rowMap = new LinkedHashMap<>();
@@ -265,12 +265,25 @@ public class DB_Utility {
                 ;
                 rowMap.put(columnName, cellValue);
             }
-                rs.beforeFirst();
-        }catch (SQLException e){
-            System.out.println("ERROR WHILE getting ROWMAP "+ e.getMessage() );
+            rs.beforeFirst();
+        } catch (SQLException e) {
+            System.out.println("ERROR WHILE getting ROWMAP " + e.getMessage());
         }
         return rowMap;
 
     }
 
+
+    public static List<Map<String, String>> getRowMapList() {
+
+        List<Map<String, String>> rowMapList = new ArrayList<>();
+
+        for (int rowNum = 1; rowNum <= getRowCount(); rowNum++) {
+
+            rowMapList.add(getRowMap(rowNum));
+
+        }
+        return rowMapList;
+
     }
+}

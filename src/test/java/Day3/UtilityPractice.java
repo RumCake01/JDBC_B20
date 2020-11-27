@@ -5,9 +5,7 @@ import utility.DB_Utility;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class UtilityPractice {
 
@@ -72,6 +70,20 @@ public class UtilityPractice {
         System.out.println("============= NEW ===========================\n");
 
         System.out.println("first row of rowMap = "+ DB_Utility.getRowMap(1));
+
+
+
+        // if one row can be represented as one map object
+        // what data structure is good to store 19 rows of data? - the answer is List of Map
+
+        //get second row and fourthh row and save it to the list of maps:
+        Map<String, String> row2Map = DB_Utility.getRowMap(2);
+        Map<String, String> row4Map = DB_Utility.getRowMap(4);
+
+        List<Map<String, String>> rowMapList = new ArrayList<>();
+        rowMapList.add(row2Map);
+        rowMapList.add(row4Map);
+        System.out.println(rowMapList);
 
 
 
