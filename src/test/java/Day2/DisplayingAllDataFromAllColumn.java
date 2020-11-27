@@ -16,7 +16,6 @@ public class DisplayingAllDataFromAllColumn {
 
         ResultSet rs = statement.executeQuery("SELECT * FROM EMPLOYEES");
 
-
         // print out entire first row of Employee Table from above query
         ResultSetMetaData  rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
@@ -36,8 +35,6 @@ public class DisplayingAllDataFromAllColumn {
 
         System.out.println(rs.getString(1));
 
-
-
         //  we can get the whole row , if we know how to get one row?
         // first move the cursor to the first row and print all coluumns
         rs.beforeFirst();
@@ -48,7 +45,6 @@ public class DisplayingAllDataFromAllColumn {
             }
             System.out.println();
         }
-
         rs.close();
         statement.close();
         conn.close();
