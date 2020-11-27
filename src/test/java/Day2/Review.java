@@ -1,19 +1,14 @@
 package Day2;
 
+import utility.DB_Utility;
+
 import java.sql.*;
 
 public class Review {
     public static void main(String[] args) throws SQLException {
 
-        String connection = "jdbc:oracle:thin:@54.172.140.77:1521:XE";
-        String username = "hr";
-        String password = "hr";
-
-        Connection conn = DriverManager.getConnection(connection, username, password);
-
-        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-        ResultSet rs = statement.executeQuery("SELECT * FROM JOBS");
+        DB_Utility.createConnection();
+        ResultSet rs = DB_Utility.runQuery("SELECT * FROM JOBS");
 
         // read the first row:
         rs.next();
@@ -56,9 +51,8 @@ public class Review {
 
 
         // clean up the connection  , statement and resultSet object after usage
-        rs.close();
-        statement.close();
-        conn.close();
+
+        DB_Utility.destoy();
     }
 
 

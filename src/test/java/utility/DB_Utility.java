@@ -5,6 +5,9 @@ public class DB_Utility {
 
     static Connection conn;  // this is made static so we can reuse it in every method we write
     // the benefit is we can use it later directly in our ResultSet method
+    static Statement statement;
+
+    static ResultSet resultSet;
 
 
     public static void createConnection() { // this method will test if our connection is alive or not
@@ -38,10 +41,14 @@ public class DB_Utility {
             } catch (SQLException e) {
                 System.out.println("Error while getting resultset " + e.getMessage());
             }
-
             return rs;
+
         }
 
+        // create method to clean up all the connection statement and result set
+    public static void destoy (){
+
+    }
     public static void main(String[] args) throws SQLException {
         createConnection();
        ResultSet rs =  runQuery("SELECT * FROM REGIONS");
