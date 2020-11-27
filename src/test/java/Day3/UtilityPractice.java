@@ -33,6 +33,7 @@ public class UtilityPractice {
         System.out.println("All data from all rows "+DB_Utility.getRowDataAsList(1));
 
 
+        System.out.println("Data at specific row, from the specific column "+ DB_Utility.getColumnDataAtRow(2, 2));
 
         DB_Utility.destroy();
 
