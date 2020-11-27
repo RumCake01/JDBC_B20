@@ -158,6 +158,26 @@ public class DB_Utility {
         return result;
     }
 
-    // get cell
+
+
+    // method to return the cell value at certain row certain column, so the method will take 2 parameters:
+    // @param rowNum row Number
+    // @parem colName column Name
+    // return Cell value as a String
+
+
+    // this below is the overloaded method, the same name but different parameter.
+    public static String getColumnDataAtRow( int rowNum, String colName){
+
+        String result = "";
+        try {
+            rs.absolute(rowNum);
+            result = rs.getString(colName);
+            rs.beforeFirst();
+        } catch (SQLException e) {
+            System.out.println("Error while getting cell valye ar RoNum ColNum" + e.getMessage());
+        }
+        return result;
+    }
 
 }
