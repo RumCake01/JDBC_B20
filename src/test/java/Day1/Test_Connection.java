@@ -59,7 +59,7 @@ public class Test_Connection {
 
         // ResultSet object is what we use to store the actual result we get from query
         ResultSet rs = stmnt.executeQuery("SELECT * FROM REGIONS");
-
+        // this above is how we run our query to ge the data and store in rs variable.
         // ResultSet comes with a cursor used to navigate between rows
         // initially the cursor is at before first location (right before the first row)
         // in order to come to the first row we need to move the cursor
