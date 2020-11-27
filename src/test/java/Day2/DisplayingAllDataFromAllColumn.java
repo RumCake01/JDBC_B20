@@ -22,7 +22,7 @@ public class DisplayingAllDataFromAllColumn {
         }
         System.out.println("====================================");
 
-        // this whole loop below is getting ys one row of data
+        // this whole loop below is getting us one row of data
         rs.next();
         for (int colNum = 1; colNum <=columnCount ; colNum++) {
             System.out.print(rs.getString(colNum) + "\t");

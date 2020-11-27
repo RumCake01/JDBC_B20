@@ -35,7 +35,7 @@ public class DB_Utility {
         // now, we are reusing the connection build from previous method
         ResultSet rs = null;
             try {
-                Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 rs = statement.executeQuery(query);
 
             } catch (SQLException e) {
