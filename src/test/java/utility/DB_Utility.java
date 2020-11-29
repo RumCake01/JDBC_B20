@@ -1,4 +1,5 @@
 package utility;
+import javax.security.auth.login.Configuration;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -19,9 +20,9 @@ public class DB_Utility {
 
         // now create connection:
 
-        String connection = "jdbc:oracle:thin:@54.172.140.77:1521:XE";
-        String username = "hr";
-        String password = "hr";
+        String connection = ConfigurationReader.getProperty("database.ur");
+        String username = ConfigurationReader.getProperty("database.username");
+        String password = ConfigurationReader.getProperty("database.password");
 
         try {
             conn = DriverManager.getConnection(connection, username, password);
