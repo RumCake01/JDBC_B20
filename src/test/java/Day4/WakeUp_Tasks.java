@@ -20,11 +20,27 @@ public class WakeUp_Tasks {
 
         DB_Utility.runQuery(query) ;
 
-        DB_Utility.displayAllData();
+        System.out.println("Row count is  " + DB_Utility.getRowCount());
+        System.out.println("column count is  " + DB_Utility.getColumnCount());
+        System.out.println("DB_Utility.getColumnDataAsList(\"FIRST_NAME\") =\n\t " + DB_Utility.getColumnDataAsList("FIRST_NAME"));
+        System.out.println("DB_Utility.getRowMap(2) = \n\t" + DB_Utility.getRowMap(2));
+        System.out.println("DB_Utility.getColumnDataAtRow(3, \"DEPARTMENT_NAME\") = \n\t" + DB_Utility.getColumnDataAtRow(3, "DEPARTMENT_NAME"));
+        System.out.println("DB_Utility.getRowDataAsList(3) = \n\t" + DB_Utility.getRowDataAsList(3));
+        DB_Utility.get
 
         DB_Utility.destroy();
+
 
     }
 
 
 }
+
+
+
+
+
+
+
+
+
