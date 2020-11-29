@@ -26,7 +26,8 @@ public class WakeUp_Tasks {
         System.out.println("DB_Utility.getRowMap(2) = \n\t" + DB_Utility.getRowMap(2));
         System.out.println("DB_Utility.getColumnDataAtRow(3, \"DEPARTMENT_NAME\") = \n\t" + DB_Utility.getColumnDataAtRow(3, "DEPARTMENT_NAME"));
         System.out.println("DB_Utility.getRowDataAsList(3) = \n\t" + DB_Utility.getRowDataAsList(3));
-        DB_Utility.get
+        System.out.println("DB_Utility.getAllDataAsListOfMap() = \n\t" + DB_Utility.getAllDataAsListOfMap());
+        System.out.println("DB_Utility.getColumnNames() = \n\t" + DB_Utility.getColumnNames());
 
         DB_Utility.destroy();
 
