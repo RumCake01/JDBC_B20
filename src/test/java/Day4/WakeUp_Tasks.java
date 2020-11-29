@@ -7,16 +7,22 @@ public class WakeUp_Tasks {
     // Find out the name of top earner in each departments in HR Database
 
     public static void main(String[] args) {
-     String query = "-- Find out the name of top earner in each departments in HR Database\n" +
-             " select e.FIRST_NAME, d.DEPARTMENT_NAME, E.SALARY\n" +
-             "from EMPLOYEES e\n" +
-             "inner join DEPARTMENTS D\n" +
-             "                    on e.DEPARTMENT_ID = d.DEPARTMENT_ID\n" +
-             "where salary in (select max (SALARY) from EMPLOYEES e\n" +
-             "inner join DEPARTMENTS d on e.DEPARTMENT_ID = d.DEPARTMENT_ID\n" +
-             "group by d.DEPARTMENT_NAME)\n" +
-             //we can order it by a certain column
-             "order by 1;";
+        DB_Utility.createConnection();
+
+        String query = "SELECT e.FIRST_NAME , d.DEPARTMENT_NAME , e.SALARY " +
+                "FROM EMPLOYEES e " +
+                "INNER JOIN DEPARTMENTS d ON e.DEPARTMENT_ID = d.DEPARTMENT_ID " +
+                "WHERE SALARY IN (   SELECT MAX(e.SALARY)  " +
+                "                        FROM EMPLOYEES e " +
+                "                        INNER JOIN DEPARTMENTS d ON e.DEPARTMENT_ID = d.DEPARTMENT_ID " +
+                "                        GROUP BY d.DEPARTMENT_NAME   ) " +
+                "ORDER BY 1  ";
+
+        DB_Utility.runQuery(query) ;
+
+        DB_Utility.displayAllData();
+
+        DB_Utility.destroy();
 
     }
 

@@ -46,6 +46,7 @@ public class DB_Utility {
         } catch (SQLException e) {
             System.out.println("Error while getting resultset " + e.getMessage());
         }
+
         return rs;
     }
 
